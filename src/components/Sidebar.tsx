@@ -31,13 +31,13 @@ export default function Sidebar({ collapsed, onToggleDesktop, onCloseMobile }: S
       `}
     >
       {/* Brand Header */}
-      <div className="p-4 flex items-center justify-between border-b border-white/5 shrink-0 bg-[#0f172a] relative overflow-hidden min-h-[72px]">
+      <div className="p-5 flex items-center justify-center border-b border-white/5 shrink-0 bg-[#0f172a] relative overflow-hidden min-h-[100px]">
         <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 50% -20%, #ea580c 0%, transparent 60%)' }} />
         {!collapsed && (
           <img
             src="/ProMadiraLogoTransparent.png"
             alt="ProMadira Logo"
-            className="h-10 object-contain relative z-10 filter drop-shadow-lg flex-1 min-w-0"
+            className="w-full max-h-20 object-contain relative z-10 filter drop-shadow-lg"
           />
         )}
         {collapsed && (
