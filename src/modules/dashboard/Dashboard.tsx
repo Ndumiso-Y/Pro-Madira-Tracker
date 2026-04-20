@@ -50,7 +50,7 @@ export default function Dashboard() {
                   contentStyle={{borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)', fontWeight: 600, fontSize: '13px'}} 
                 />
                 <Bar dataKey="count" radius={[0, 6, 6, 0]} barSize={20}>
-                  {mockData.chartData.map((entry, index) => (
+                  {mockData.chartData.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={index === 4 ? '#ea580c' : '#0f172a'} opacity={index === 4 ? 1 : 0.8} />
                   ))}
                 </Bar>

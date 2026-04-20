@@ -1,4 +1,4 @@
-import { Users, MoreVertical, Search, ExternalLink } from 'lucide-react';
+import { Users, MoreVertical, Search } from 'lucide-react';
 
 export default function ClientList() {
   const clients = [

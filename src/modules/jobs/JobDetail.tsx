@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { mockData, statusColors, priorityColors } from '../../lib/utils';
-import { FileText, ArrowRight, Truck, Wrench, FileCheck, Clock, Plus, MessageSquare, ChevronRight, UploadCloud } from 'lucide-react';
+import { FileText, ArrowRight, Truck, Wrench, FileCheck, Clock, Plus, ChevronRight, UploadCloud } from 'lucide-react';
 
 const steps = [
   { id: 'requested', label: 'Requested' },
@@ -16,7 +15,6 @@ const steps = [
 export default function JobDetail() {
   const { id } = useParams();
   const job = mockData.recentJobs.find(j => j.id === id) || mockData.recentJobs[0];
-  const [activeTab, setActiveTab] = useState('overview');
 
   const currentStepIndex = steps.findIndex(s => s.id === job.status) >= 0 ? steps.findIndex(s => s.id === job.status) : 3;
 

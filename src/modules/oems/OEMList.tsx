@@ -1,4 +1,4 @@
-import { Building2, Search, Filter, MoreVertical } from 'lucide-react';
+import { Building2, Search, MoreVertical } from 'lucide-react';
 
 export default function OEMList() {
   const oems = [

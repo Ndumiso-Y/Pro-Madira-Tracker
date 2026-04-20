@@ -1,4 +1,4 @@
-import { BarChart, Activity, Clock, DownloadCloud } from 'lucide-react';
+import { Activity, Clock, DownloadCloud } from 'lucide-react';
 
 export default function Reports() {
   return (
