@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
+const SUPABASE_CONFIGURED = !!(
+  import.meta.env.VITE_SUPABASE_URL &&
+  !import.meta.env.VITE_SUPABASE_URL.includes('placeholder')
+);
+
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -20,6 +25,11 @@ export default function Login() {
     } else {
       navigate('/dashboard', { replace: true });
     }
+  }
+
+  function enterDemoMode() {
+    sessionStorage.setItem('demo_mode', 'true');
+    navigate('/dashboard', { replace: true });
   }
 
   return (
@@ -86,6 +96,23 @@ export default function Login() {
             </button>
           </form>
         </div>
+
+        {!SUPABASE_CONFIGURED && (
+          <div className="mt-4">
+            <div className="relative flex items-center mb-4">
+              <div className="flex-1 border-t border-slate-700" />
+              <span className="px-3 text-xs text-slate-500 font-medium">or</span>
+              <div className="flex-1 border-t border-slate-700" />
+            </div>
+            <button
+              type="button"
+              onClick={enterDemoMode}
+              className="w-full py-3 bg-white/5 border border-white/10 text-slate-300 font-bold rounded-xl hover:bg-white/10 transition-all text-sm"
+            >
+              Enter Demo Mode (no backend required)
+            </button>
+          </div>
+        )}
 
         <p className="text-center text-slate-500 text-xs mt-6">
           Promodira Phase 1 · Restricted Access
