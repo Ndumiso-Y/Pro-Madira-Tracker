@@ -18,6 +18,14 @@ export default function Login() {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    // Demo credentials — active until Supabase is connected
+    if (email === 'demo@promadira.co.za' && password === 'demo1234') {
+      sessionStorage.setItem('demo_mode', 'true');
+      navigate('/dashboard', { replace: true });
+      return;
+    }
+
     const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
     if (authError) {
       setError(authError.message);
