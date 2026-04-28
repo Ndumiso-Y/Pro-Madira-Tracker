@@ -1,4 +1,5 @@
 import { FileText, Search, ExternalLink } from 'lucide-react';
+import { PreviewBadge } from '../../components/PreviewBadge';
 
 export default function QuotesList() {
   const quotes = [
@@ -12,7 +13,10 @@ export default function QuotesList() {
     <div className="h-full flex flex-col bg-white rounded-2xl shadow-[0_2px_12px_-4px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden">
       <div className="p-5 md:p-6 border-b border-slate-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-50/50">
         <div>
-          <h2 className="text-xl font-extrabold text-brand-navy tracking-tight">Quotations Archive</h2>
+          <div className="flex items-center gap-3 flex-wrap">
+            <h2 className="text-xl font-extrabold text-brand-navy tracking-tight">Quotations Archive</h2>
+            <PreviewBadge />
+          </div>
           <p className="text-xs font-medium text-slate-400 mt-1 uppercase tracking-widest leading-relaxed">Live financial pipeline & historical records</p>
         </div>
         <div className="flex items-center gap-3 w-full sm:w-auto">

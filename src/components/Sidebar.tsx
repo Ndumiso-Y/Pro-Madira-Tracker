@@ -3,6 +3,7 @@ import {
   LayoutDashboard, Briefcase, FileText, Truck, Users,
   BookOpen, BarChart3, Settings, LogOut, ChevronLeft, ChevronRight, X
 } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 
 const navItems = [
   { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
@@ -22,6 +23,13 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ collapsed, onToggleDesktop, onCloseMobile }: SidebarProps) {
+  const { profile, signOut } = useAuth();
+  const initials = profile?.full_name
+    ? profile.full_name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+    : 'OP';
+  const displayName = profile?.full_name ?? 'Ops User';
+  const displayRole = profile?.role === 'admin' ? 'Administrator' : 'Controller';
+
   return (
     <div
       className={`
@@ -120,14 +128,18 @@ export default function Sidebar({ collapsed, onToggleDesktop, onCloseMobile }: S
           <div className="flex items-center justify-between px-4 py-3 border-t border-white/5">
             <div className="flex items-center gap-3 min-w-0">
               <div className="w-8 h-8 rounded-full bg-brand-accent/20 border border-brand-accent/30 flex items-center justify-center shadow-inner shrink-0">
-                <span className="text-xs font-bold text-brand-accent">OP</span>
+                <span className="text-xs font-bold text-brand-accent">{initials}</span>
               </div>
               <div className="flex flex-col min-w-0">
-                <span className="text-sm font-bold text-slate-200 truncate">Ops User</span>
-                <span className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">Controller</span>
+                <span className="text-sm font-bold text-slate-200 truncate">{displayName}</span>
+                <span className="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">{displayRole}</span>
               </div>
             </div>
-            <button className="p-2 rounded-md hover:bg-red-500/10 hover:text-red-400 text-slate-500 transition-colors shrink-0">
+            <button
+              onClick={signOut}
+              title="Sign out"
+              className="p-2 rounded-md hover:bg-red-500/10 hover:text-red-400 text-slate-500 transition-colors shrink-0"
+            >
               <LogOut className="w-[18px] h-[18px]" />
             </button>
           </div>
@@ -135,7 +147,11 @@ export default function Sidebar({ collapsed, onToggleDesktop, onCloseMobile }: S
 
         {collapsed && (
           <div className="flex justify-center py-3 border-t border-white/5">
-            <button className="p-2 rounded-md hover:bg-red-500/10 hover:text-red-400 text-slate-500 transition-colors">
+            <button
+              onClick={signOut}
+              title="Sign out"
+              className="p-2 rounded-md hover:bg-red-500/10 hover:text-red-400 text-slate-500 transition-colors"
+            >
               <LogOut className="w-[18px] h-[18px]" />
             </button>
           </div>

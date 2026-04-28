@@ -1,4 +1,6 @@
 import { User, Bell, Shield, Paintbrush, ChevronRight } from 'lucide-react';
+import { PreviewBadge } from '../../components/PreviewBadge';
+import { PreviewModeGuard } from '../../components/PreviewModeGuard';
 
 export default function Settings() {
   return (
@@ -39,7 +41,10 @@ export default function Settings() {
       {/* Settings Content */}
       <div className="flex-1 p-5 md:p-10 overflow-y-auto">
          <div className="max-w-2xl">
-           <h2 className="text-2xl md:text-3xl font-black text-brand-navy mb-8 tracking-tight">Identity & Security</h2>
+           <div className="flex items-center gap-3 flex-wrap mb-8">
+             <h2 className="text-2xl md:text-3xl font-black text-brand-navy tracking-tight">Identity & Security</h2>
+             <PreviewBadge />
+           </div>
            
            <div className="space-y-10">
              <div className="flex flex-col sm:flex-row items-center gap-6 p-6 bg-slate-50 rounded-3xl border border-slate-100 shadow-inner">
@@ -70,7 +75,9 @@ export default function Settings() {
                </div>
                
                <div className="flex pt-4">
-                 <button className="w-full sm:w-auto px-8 py-3 bg-brand-navy text-white rounded-xl text-sm font-bold shadow-lg shadow-slate-200 hover:bg-slate-800 transition-all active:scale-95">Synchronize Profile Datapoints</button>
+                 <PreviewModeGuard>
+                   <button className="w-full sm:w-auto px-8 py-3 bg-brand-navy text-white rounded-xl text-sm font-bold shadow-lg shadow-slate-200 hover:bg-slate-800 transition-all active:scale-95">Synchronize Profile Datapoints</button>
+                 </PreviewModeGuard>
                </div>
              </div>
 

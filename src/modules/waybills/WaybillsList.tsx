@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Truck, Copy } from 'lucide-react';
+import { PreviewBadge } from '../../components/PreviewBadge';
 
 export default function WaybillsList() {
   const [tab, setTab] = useState('mine');
@@ -7,9 +8,12 @@ export default function WaybillsList() {
   return (
     <div className="h-full flex flex-col bg-white rounded-2xl shadow-[0_2px_12px_-4px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden">
       <div className="p-4 md:p-6 border-b border-slate-200 flex flex-col lg:flex-row justify-between items-start lg:items-center bg-slate-50 gap-4">
-        <h2 className="text-xl font-bold text-brand-navy flex items-center shrink-0">
-          <Truck className="w-5 h-5 mr-2 text-slate-400 shrink-0" /> Waybills Matrix
-        </h2>
+        <div className="flex items-center gap-3 flex-wrap shrink-0">
+          <h2 className="text-xl font-bold text-brand-navy flex items-center">
+            <Truck className="w-5 h-5 mr-2 text-slate-400 shrink-0" /> Waybills Matrix
+          </h2>
+          <PreviewBadge />
+        </div>
         
         <div className="flex bg-slate-200 p-1 rounded-xl w-full lg:w-auto overflow-x-auto scrollbar-hide">
           <button 

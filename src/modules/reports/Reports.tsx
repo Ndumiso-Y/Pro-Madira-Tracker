@@ -1,11 +1,15 @@
 import { Activity, Clock, DownloadCloud } from 'lucide-react';
+import { PreviewBadge } from '../../components/PreviewBadge';
 
 export default function Reports() {
   return (
     <div className="h-full overflow-y-auto w-full max-w-[1600px] mx-auto pb-10 px-2 sm:px-0 animate-in fade-in duration-500">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 border-b border-slate-200 pb-6 bg-white/50 p-4 rounded-2xl md:bg-transparent md:p-0 md:rounded-none">
         <div>
-           <h1 className="text-2xl md:text-3xl font-black text-brand-navy tracking-tight">Intelligence Node</h1>
+           <div className="flex items-center gap-3 flex-wrap">
+             <h1 className="text-2xl md:text-3xl font-black text-brand-navy tracking-tight">Intelligence Node</h1>
+             <PreviewBadge />
+           </div>
            <p className="text-sm font-medium text-slate-500 mt-1 tracking-wide line-clamp-2 md:line-clamp-none">Macro-level SLA throughput, asset routing volumes, and partner efficacy analytics.</p>
         </div>
         <button className="w-full sm:w-auto px-6 py-3 bg-brand-navy text-white rounded-xl text-sm font-bold hover:bg-slate-800 transition-all shadow-lg shadow-slate-200 flex items-center justify-center focus:ring-4 focus:ring-slate-300">
