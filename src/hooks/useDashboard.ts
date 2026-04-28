@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
+import { mockData, mockJobs } from '../lib/utils';
 import type { Job } from '../types';
+
+const SUPABASE_CONFIGURED = !!(
+  import.meta.env.VITE_SUPABASE_URL &&
+  !import.meta.env.VITE_SUPABASE_URL.includes('placeholder')
+);
 
 const CLOSED_STATUSES = ['Closed', 'Cancelled', 'Delivered'];
 
@@ -28,6 +34,25 @@ export function useDashboard(): DashboardMetrics {
   });
 
   useEffect(() => {
+    if (!SUPABASE_CONFIGURED) {
+      const activeJobs = mockJobs.filter(j => !CLOSED_STATUSES.includes(j.status));
+      const statusCounts: Record<string, number> = {};
+      activeJobs.forEach(j => {
+        statusCounts[j.status] = (statusCounts[j.status] ?? 0) + 1;
+      });
+      setMetrics({
+        totalActive: mockData.kpis.totalActive,
+        awaitingAction: mockData.kpis.awaitingAction,
+        overdue: mockData.kpis.overdue,
+        closedThisMonth: mockData.kpis.closedThisMonth,
+        recentJobs: mockJobs,
+        chartData: mockData.chartData,
+        loading: false,
+        error: null,
+      });
+      return;
+    }
+
     async function load() {
       const { data: jobs, error } = await supabase
         .from('jobs')
